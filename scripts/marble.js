@@ -106,7 +106,7 @@ function runBot() {
         console.log(`* Connected to ${addr}:${port}`);
         client.say(
             opts.channels[0],
-            `Hi, this is me, ${opts.identity.username}, I am definitely not a bot`
+            `${opts.identity.username} is ready to play some Marbles!`
         );
     }
 }
