@@ -9,7 +9,7 @@ let target = "";
 function initFields() {
     console.log("running initFields")
     username = localStorage.getItem(usernameKey); console.log(username);
-    oAuth = localStorage.getItem(oAuthKey); console.log(oAuth);
+    oAuth = localStorage.getItem(oAuthKey); //console.log(oAuth);
     target = localStorage.getItem(targetKey); console.log(target);
     //Fill in the fields if they exit in localstorage:
     if (username != null) document.getElementById("usernameInput").value = username;
