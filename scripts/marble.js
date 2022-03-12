@@ -1,5 +1,3 @@
-
-
 let usernameKey = "mb_UserName";
 let oAuthKey = "mb_OAuth";
 let targetKey = "mb_Target";
@@ -43,27 +41,72 @@ function updateFields() {
 }
 
 
-
+let timeout = false;
 function runBot() {
-    const tmi = require('tmi.js');
-    const client = new tmi.Client({
-        options: { debug: true },
+    // const client = new tmi.Client({
+    //     options: { debug: true },
+    //     identity: {
+    //         username: username,
+    //         password: token
+    //     },
+    //     channels: [target]
+    // });
+
+    // client.connect();
+
+    // client.on('message', (channel, tags, message, self) => {
+    //     // Ignore echoed messages.
+    //     if (self) return;
+
+    //     if (message.toLowerCase() === '!hello') {
+    //         // "@alca, heya!"
+    //         client.say(channel, `@${tags.username}, heya!`);
+    //     }
+    // });
+    opts = {
         identity: {
             username: username,
-            password: token
+            password: oAuth
         },
         channels: [target]
-    });
+    }
+    const client = new tmi.Client(opts);
 
+    client.on('connected', onConnectedHandler);
+    client.on('message',onMessageHandler);
     client.connect();
 
-    client.on('message', (channel, tags, message, self) => {
-        // Ignore echoed messages.
-        if (self) return;
 
-        if (message.toLowerCase() === '!hello') {
-            // "@alca, heya!"
-            client.say(channel, `@${tags.username}, heya!`);
+    function toggleTimeout() {
+        console.log('Re-enabling bot');
+        timeout = false;
+    }
+    
+    // Called every time a message comes in
+    function onMessageHandler(target, context, msg, self) {
+        if (self) {
+            return;
+        } // Ignore messages from the bot
+    
+        // Remove whitespace from chat message
+        const commandName = msg.trim();
+    
+        // If the command is known, let's execute it
+        if (!timeout && commandName === '!play') {
+            client.say(target, '!play');
+            timeout = true;
+            console.log('Joined game, now waiting for 5 seconds');
+            setTimeout(toggleTimeout, 20000);
         }
-    });
+    }
+
+    // Called every time the bot connects to Twitch chat
+    function onConnectedHandler(addr, port) {
+        console.log(`* Connected to ${addr}:${port}`);
+        client.say(
+            opts.channels[0],
+            `Hi, this is me, ${opts.identity.username}, I am definitely not a bot`
+        );
+    }
 }
+
