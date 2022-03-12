@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<title>ShungerYunger's page</title>
+
+<head>
+    <script data-main="scripts/app" src="scripts/require.js"></script>
+    <script src="scripts/marble.js"></script>
+</head>
+
+<body onload="initFields()">
+    <p id="channelInputs">
+        <br>
+        <input type="text" id="usernameInput" placeholder="Your Twitch UserName"><br>
+        <input type="password" id="tokenInput" placeholder="Your Twitch OAuth token"> <a
+            href="http://www.twitchapps.com/tmi/" target="blank">Click here </a>to generate a token<br>
+        <input type="text" id="targetInput" placeholder="Channel to connect to"><br>
+        <button id="channelSubmit" onclick="updateFields()">submit</button><br>
+        <br><br>
+        <button id="runBtn" onclick="runBot()">Connect!</button>
+    </p>
+</body>
+
+</html>
