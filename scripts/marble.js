@@ -43,6 +43,7 @@ function updateFields() {
 
 let timeout = false;
 function runBot() {
+    updateFields();
     // const client = new tmi.Client({
     //     options: { debug: true },
     //     identity: {

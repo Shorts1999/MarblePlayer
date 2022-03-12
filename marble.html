@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html>
-<title>ShungerYunger's page</title>
+<title>ShungerYunger's MarbleBot</title>
 
 <head>
     <script src="scripts/tmi.min.js"></script>
@@ -11,14 +11,16 @@
 <body onload="initFields()">
     <p id="channelInputs">
         <br>
-        <input type="text" id="usernameInput" placeholder="Your Twitch UserName"><br>
-        <input type="password" id="tokenInput" placeholder="Your Twitch OAuth token"> <a
-            href="http://www.twitchapps.com/tmi/" target="blank">Click here </a>to generate a token<br>
-        <input type="text" id="targetInput" placeholder="Channel to connect to"><br>
-        <button id="channelSubmit" onclick="updateFields()">submit</button><br>
-        <br><br>
+        Your Username: <input type="text" id="usernameInput" placeholder="Your Twitch UserName"><br>
+        Your Token:   <input type="password" id="tokenInput" placeholder="Your Twitch OAuth token"> 
+        <a href="http://www.twitchapps.com/tmi/" target="blank">Click here </a>to generate a token, <a href="./howto.html" target="blank">click here</a> for more info <br>
+        Target channel:<input type="text" id="targetInput" placeholder="Channel to connect to"><br>
+        <button id="channelSubmit" onclick="updateFields()">Save</button><br>
+        <br>
         <button id="runBtn" onclick="runBot()">Connect!</button>
     </p>
+    <br>
+    
 </body>
 
 </html>
